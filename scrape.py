@@ -19,3 +19,15 @@ def collect_page(url, browser=browser, coll=forecast_coll, delay=5):
         })
     doc = coll.find_one({'url' : url})
     return doc
+
+def convert_avy_str_to_num(word):
+    if word == 'Low':
+        return 1
+    elif word == 'Moderate':
+        return 2
+    elif word == 'Considerable':
+        return 3
+    elif word == 'High':
+        return 4
+    elif word == 'Extreme':
+        return 5
