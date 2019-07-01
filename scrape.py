@@ -1,12 +1,20 @@
+from selenium.webdriver import Chrome
+import pymongo
+import time
+import pandas as pd
+from bs4 import BeautifulSoup
+import json
 
-def scrape_url(url, browser=browser, delay=5):
+browser = Chrome()
+
+def scrape_url(url, browser=browser, delay=3):
     """Returns the HTML source from a URL."""
     browser.get(url)
     time.sleep(delay)
     html = browser.page_source
     return html
 
-def collect_page(url, browser=browser, coll=forecast_coll, delay=5):
+def collect_page(url, browser=browser, coll=coll, delay=3):
     """Scrapes and saves the source of a web page."""
     docs = list(coll.find({'url': url}))
     if len(docs) == 0:
@@ -19,6 +27,7 @@ def collect_page(url, browser=browser, coll=forecast_coll, delay=5):
         })
     doc = coll.find_one({'url' : url})
     return doc
+    
 
 def convert_avy_str_to_num(word):
     if word == 'Low':
