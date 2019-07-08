@@ -49,20 +49,21 @@
               req.bind('complete', show_results)
               req.open('POST', '/predict', True)
               req.set_header('content-type','application/json')
-              data = json.dumps(
-                {'input_solar_1': document['input_solar_1'].value,
-                {'input_temp_2': document['input_temp_2'].value,
-                {'input_wind_speed_min_3': document['input_wind_speed_min_3'].value,
-                {'input_wind_direction_4': document['input_wind_direction_4'].value,
-                {'input_total_snow_depth_5': document['input_total_snow_depth_5'].value,
-                {'input_max_1_day_temp_6': document['input_max_1_day_temp_6'].value,
-                {'input_max_2_day_temp_7': document['input_max_2_day_temp_7'].value,
-                {'input_max_1_day_snow_8': document['input_max_1_day_snow_8'].value,
-                {'input_max_2_day_snow_9': document['input_max_2_day_snow_9'].value,
-                {'input_max_3_day_snow_10': document['input_max_3_day_snow_10'].value,
-                {'input_precipitation_11': document['input_precipitation_11'].value,
-                })
-              req.send(data)
+              fields = [
+                'input_solar_1',
+                'input_temp_2',
+                'input_wind_speed_min_3',
+                'input_wind_direction_4',
+                'input_total_snow_depth_5',
+                'input_max_1_day_temp_6',
+                'input_max_2_day_temp_7',
+                'input_max_1_day_snow_8',
+                'input_max_2_day_snow_9',
+                'input_max_3_day_snow_10',
+                'input_precipitation_11',
+                ]
+              data = {field: document[field].value for field in fields}
+              req.send(json.dumps(data))
     
           document["predict_button"].bind("click", get_prediction)
         </script>
@@ -73,59 +74,83 @@
               <div class="col-lg-7 my-auto">
                 <div class="header-content mx-auto">
                   <h1 class="mb-5">WHAT IS THE AVALANCHE DANGER?</h1>
-                  <form>
+                 
 
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="input_solar_1">Solar Output</label>
-                        <input type="text" class="form-control" id="input_solar_1" placeholder="Voltage">
+                        <input type="number" class="form-control" id="input_solar_1" placeholder="12.6">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_temp_2">Temperature</label>
-                        <input type="text" class="form-control" id="input_temp_2" placeholder="Farenheit">
+                        <input type="number" class="form-control" id="input_temp_2" placeholder="21">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_wind_speed_min_3">Mininum Wind Speed</label>
-                        <input type="text" class="form-control" id="input_wind_speed_min_3" placeholder="mph">
+                        <input type="number" class="form-control" id="input_wind_speed_min_3" placeholder="5">
                       </div>
                       <div class="form-group col-md-6">
-                        <label for="input_wind_direction_4">Wind Direction</label>
-                        <input type="text" class="form-control" id="input_wind_direction_4" placeholder="ex: SW wind = 225 ">
+                        <label for="input_wind_speed_avg_4">Wind Speed Average</label>
+                        <input type="number" class="form-control" id="input_wind_speed_avg_4" placeholder=225>
                       </div>
                       <div class="form-group col-md-6">
-                        <label for="input_total_snow_depth_5">Snow Depth</label>
-                        <input type="text" class="form-control" id="input_total_snow_depth_5" placeholder="in inches">
+                        <label for="input_wind_direction_6">Wind Direction</label>
+                        <input type="number" class="form-control" id="input_wind_direction_6" placeholder="225">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="input_snowpack_7">Snowpack Depth</label>
+                        <input type="number" class="form-control" id="input_snowpack_7" placeholder="100">
                       </div> 
                       <div class="form-group col-md-6">
-                        <label for="input_max_1_day_temp_6">24 Hour Max Temp</label>
-                        <input type="text" class="form-control" id="input_max_1_day_temp_6" placeholder="Farenheit">
+                        <label for="input_max_1_day_temp_6">24 Hour Snowfall</label>
+                        <input type="number" class="form-control" id="input_max_1_day_temp_6" placeholder="21">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_max_2_day_temp_7">48 Hour Max Temp</label>
-                        <input type="text" class="form-control" id="input_max_2_day_temp_7" placeholder="Farenheit">
+                        <input type="number" class="form-control" id="input_max_2_day_temp_7" placeholder="31">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_max_1_day_snow_8">1 Day Max Snow</label>
-                        <input type="text" class="form-control" id="input_max_1_day_snow_8" placeholder="in inches">
+                        <input type="number" class="form-control" id="input_max_1_day_snow_8" placeholder="12">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_max_2_day_snow_9">2 Day Max Snow</label>
-                        <input type="text" class="form-control" id="input_max_2_day_snow_9" placeholder="in inches">
+                        <input type="number" class="form-control" id="input_max_2_day_snow_9" placeholder="12">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_max_3_day_snow_10">3 Day Max Snow</label>
-                        <input type="text" class="form-control" id="input_max_3_day_snow_10" placeholder="in inches">
+                        <input type="number" class="form-control" id="input_max_3_day_snow_10" placeholder="12">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_precipitation_11">Precipitation Accumulation</label>
-                        <input type="text" class="form-control" id="input_precipitation_11" placeholder="in inches">
+                        <input type="number" class="form-control" id="input_precipitation_11" placeholder="12">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="input_precipitation_11">Precipitation Accumulation</label>
+                        <input type="number" class="form-control" id="input_precipitation_11" placeholder="12">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="input_precipitation_11">Precipitation Accumulation</label>
+                        <input type="number" class="form-control" id="input_precipitation_11" placeholder="12">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="input_precipitation_11">Precipitation Accumulation</label>
+                        <input type="number" class="form-control" id="input_precipitation_11" placeholder="12">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="input_precipitation_11">Precipitation Accumulation</label>
+                        <input type="number" class="form-control" id="input_precipitation_11" placeholder="12">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="input_precipitation_11">Precipitation Accumulation</label>
+                        <input type="number" class="form-control" id="input_precipitation_11" placeholder="12">
                       </div>
                     
                     </div>
                     <button id="predict_button">Predict!</button>
                   <div id="result"></div>
                 </div>
-                  </form>
+                  
 
               </div>
                       </div>

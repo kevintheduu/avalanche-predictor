@@ -32,46 +32,46 @@ def predict():
     #prediction = model.predict_proba([data['user_input']])
     #return jsonify({'probability': prediction[0][1]})
     print(data)
-    solar_input_text = document['input_solar_1']
-    print(hour_24_text, type(hour_24_text))
-    solar_input = int(solar_input_text)
+    solar_input_text = data['input_solar_1']
+    print(solar_input_text, type(solar_input_text))
+    solar_input = float(solar_input_text)
     
-    temp_input_text = document['input_temp_2']
-    temp_input = int(temp_input)
+    temp_input_text = data['input_temp_2']
+    temp_input = float(temp_input_text)
     
-    input_min_wind_speed_text = document['input_wind_speed_min_3']
-    input_min_wind_speed = int(input_min_wind_speed_text)
+    input_min_wind_speed_text = data['input_wind_speed_min_3']
+    input_min_wind_speed = float(input_min_wind_speed_text)
     
-    input_wind_direction_text = document['input_wind_direction_4']
-    input_wind_direction = int(input_min_wind_speed_text)
-    
-    
-    input_total_snow_depth_text = document['input_total_snow_depth_5']
-    input_total_snow_depth = int(input_total_snow_depth_text)
+    input_wind_direction_text = data['input_wind_direction_4']
+    input_wind_direction = float(input_wind_direction_text)
     
     
-    input_max_1_day_temp_text = document['input_max_1_day_temp_6']
-    input_max_1_day_temp = int(input_max_1_day_temp_text)
+    input_total_snow_depth_text = data['input_total_snow_depth_5']
+    input_total_snow_depth = float(input_total_snow_depth_text)
     
     
-    input_max_2_day_temp_text = document['input_max_2_day_temp_7']
-    input_max_2_day_temp = int(input_max_2_day_temp_text)
+    input_max_1_day_temp_text = data['input_max_1_day_temp_6']
+    input_max_1_day_temp = float(input_max_1_day_temp_text)
     
     
-    input_max_1_day_snow_text = document['input_max_1_day_snow_8']
-    input_max_1_day_snow = int(input_max_1_day_snow_text)
+    input_max_2_day_temp_text = data['input_max_2_day_temp_7']
+    input_max_2_day_temp = float(input_max_2_day_temp_text)
     
     
-    input_max_2_day_snow_text = document['input_max_2_day_snow_9']
-    input_max_2_day_snow = int(input_max_2_day_snow_text)
+    input_max_1_day_snow_text = data['input_max_1_day_snow_8']
+    input_max_1_day_snow = float(input_max_1_day_snow_text)
     
     
-    input_max_3_day_snow_text = document['input_max_3_day_snow_10']
-    input_max_3_day_snow = int(input_max_3_day_snow_text)
+    input_max_2_day_snow_text = data['input_max_2_day_snow_9']
+    input_max_2_day_snow = float(input_max_2_day_snow_text)
     
     
-    input_precipitation_text = document['input_precipitation_11']
-    input_precipitation = int(input_precipitation_text)
+    input_max_3_day_snow_text = data['input_max_3_day_snow_10']
+    input_max_3_day_snow = float(input_max_3_day_snow_text)
+    
+    
+    input_precipitation_text = data['input_precipitation_11']
+    input_precipitation = float(input_precipitation_text)
     
     
     arguments = pd.DataFrame(
