@@ -5,7 +5,7 @@ import pickle
 from flask import Flask, request, render_template, jsonify
 
 
-with open('spam_model.pkl', 'rb') as f:
+with open('avy_danger_prediction.pkl', 'rb') as f:
     model = pickle.load(f)
 app = Flask(__name__, static_url_path="")
 

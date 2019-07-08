@@ -50,21 +50,18 @@
               req.open('POST', '/predict', True)
               req.set_header('content-type','application/json')
               data = json.dumps(
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-                {'user_input': document['user_input'].value,
-              
-              
+                {'input_solar_1': document['input_solar_1'].value,
+                {'input_temp_2': document['input_temp_2'].value,
+                {'input_wind_speed_min': document['input_wind_speed_min'].value,
+                {'input_wind_speed_min_3': document['input_wind_speed_min_3'].value,
+                {'input_wind_direction_4': document['input_wind_direction_4'].value,
+                {'input_total_snow_depth_5': document['input_total_snow_depth_5'].value,
+                {'input_max_1_day_temp_6': document['input_max_1_day_temp_6'].value,
+                {'input_max_2_day_temp_7': document['input_max_2_day_temp_7'].value,
+                {'input_max_1_day_snow_8': document['input_max_1_day_snow_8'].value,
+                {'input_max_2_day_snow_9': document['input_max_2_day_snow_9'].value,
+                {'input_max_3_day_snow_10': document['input_max_3_day_snow_10'].value,
+                {'input_precipitation_11': document['input_precipitation_11'].value,
               
               })
               req.send(data)
@@ -83,47 +80,47 @@
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="input_solar">Solar Output</label>
-                        <input type="text" class="form-control" id="input_solar" placeholder="Voltage">
+                        <input type="text" class="form-control" id="input_solar_1" placeholder="Voltage">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_temp">Temperature</label>
-                        <input type="text" class="form-control" id="input_temp" placeholder="Farenheit">
+                        <input type="text" class="form-control" id="input_temp_2" placeholder="Farenheit">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_wind_speed_min">Mininum Wind Speed</label>
-                        <input type="text" class="form-control" id="input_wind_speed_min" placeholder="mph">
+                        <input type="text" class="form-control" id="input_wind_speed_min_3" placeholder="mph">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_wind_direction">Wind Direction</label>
-                        <input type="text" class="form-control" id="input_wind_direction" placeholder="ex: SW wind = 225 ">
+                        <input type="text" class="form-control" id="input_wind_direction_4" placeholder="ex: SW wind = 225 ">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_total_snow_depth">Snow Depth</label>
-                        <input type="text" class="form-control" id="input_total_snow_depth" placeholder="in inches">
+                        <input type="text" class="form-control" id="input_total_snow_depth_5" placeholder="in inches">
                       </div> 
                       <div class="form-group col-md-6">
                         <label for="input_max_1_day_temp">24 Hour Max Temp</label>
-                        <input type="text" class="form-control" id="input_max_1_day_temp" placeholder="Farenheit">
+                        <input type="text" class="form-control" id="input_max_1_day_temp_6" placeholder="Farenheit">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_max_2_day_temp">48 Hour Max Temp</label>
-                        <input type="text" class="form-control" id="input_max_2_day_temp" placeholder="Farenheit">
+                        <input type="text" class="form-control" id="input_max_2_day_temp_7" placeholder="Farenheit">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_max_1_day_snow">1 Day Max Snow</label>
-                        <input type="text" class="form-control" id="input_max_1_day_snow" placeholder="in inches">
+                        <input type="text" class="form-control" id="input_max_1_day_snow_8" placeholder="in inches">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_max_2_day_snow">2 Day Max Snow</label>
-                        <input type="text" class="form-control" id="input_max_2_day_snow" placeholder="in inches">
+                        <input type="text" class="form-control" id="input_max_2_day_snow_9" placeholder="in inches">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_max_3_day_snow">3 Day Max Snow</label>
-                        <input type="text" class="form-control" id="input_max_3_day_snow" placeholder="in inches">
+                        <input type="text" class="form-control" id="input_max_3_day_snow_10" placeholder="in inches">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_precipitation">Precipitation Accumulation</label>
-                        <input type="text" class="form-control" id="input_precipitation" placeholder="in inches">
+                        <input type="text" class="form-control" id="input_precipitation_11" placeholder="in inches">
                       </div>
                     
                     </div>
