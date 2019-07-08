@@ -1,8 +1,5 @@
 import random
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.pipeline import Pipeline
 import pickle
 from flask import Flask, request, render_template, jsonify
 
@@ -19,7 +16,7 @@ def index():
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
-    """Return a random prediction."""
+    """Return a danger level prediction."""
     data = request.json
     prediction = model.predict_proba([data['user_input']])
     return jsonify({'probability': prediction[0][1]})
