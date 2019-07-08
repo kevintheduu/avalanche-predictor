@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.pipeline import Pipeline
 import pickle
 from flask import Flask, request, render_template, jsonify
+import numpy as np
 
 
 with open('avy_danger_prediction.pkl', 'rb') as f:
@@ -83,21 +84,29 @@ def predict():
     input_precip = float(input_precip_text)
     
     arguments = pd.DataFrame([[
-        input_solar, input_temp, input_wind_speed_min, input_wind_speed_avg, input_wind_speed_max,
-        input_wind_direction, input_snowpack_height,
-        input_1day_max_temp, input_1day_min_temp,
-        input_2day_max_temp, input_2_day_min_temp,
-        input_max_1_day_snow, input_2day_max_snow,
-        input_3day_max_snow, input_precip]],
-        columns = ['Battery Voltage (v)', 'Temperature (deg F)',
+        input_solar, input_temp,
+        input_wind_speed_min, input_wind_speed_avg,
+        input_wind_speed_max, input_wind_direction,
+        input_snowpack_height,input_1day_max_temp,
+        input_1day_min_temp, input_2day_max_temp,
+        input_2_day_min_temp,input_max_1_day_snow,
+        input_2day_max_snow,input_3day_max_snow,
+        input_precip]],
+        columns = [
+        'Battery Voltage (v)', 'Temperature (deg F)',
         'Wind Speed Minimum (mph)', 'Wind Speed Average (mph)',
         'Wind Speed Maximum (mph)', 'Wind Direction (deg.)',
-        '  Total Snow Depth (in)', 'max_1_day_temp', 'min_1_day_temp',
-        'max_2_day_temp', 'min_2_day_temp', 'max_1_day_snow', 'max_2_day_snow',
-        'max_3_day_snow', '4800_brooks'])
-    print(arguments.head(1))
+        'Total Snow Depth (in)', 'max_1_day_temp',
+        'min_1_day_temp','max_2_day_temp',
+        'min_2_day_temp', 'max_1_day_snow',
+        'max_2_day_snow','max_3_day_snow',
+        '4800_brooks'
+        ])
+    print(arguments.head())
     
-    predicted_score = model.predict(arguments)
-    rounded_predicted_score = round(predicted_score)
+    predicted_score = model.predict(arguments)[0]
+    rounded_predicted_score = np.round(predicted_score,2)
+
+    print((rounded_predicted_score), type(rounded_predicted_score))
 
     return jsonify({'Avalanche Danger Level': rounded_predicted_score})

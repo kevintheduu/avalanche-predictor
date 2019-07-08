@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Predict</title>
+        <title>Avy Danger Predictor</title>
         <script type="text/javascript" src="brython.js"></script>
         <script type="text/javascript" src="brython_stdlib.js"></script>
        
@@ -9,25 +9,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
+
+
+<title>Grayscale - Start Bootstrap Theme</title>
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom fonts for this template -->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/grayscale.min.css" rel="stylesheet">
+
+
       
-        <title>Promotional Test</title>
-      
-        <!-- Bootstrap core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      
-        <!-- Custom fonts for this template -->
-        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
-        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-      
-        <!-- Plugin CSS -->
-        <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
-      
-        <!-- Custom styles for this template -->
-        <link href="css/new-age.min.css" rel="stylesheet">  
-    
     </head>
       <body onload="brython(1)">
         <script type="text/python3">
@@ -79,67 +77,66 @@
                 <div class="header-content mx-auto">
                   <h1 class="mb-5">WHAT IS THE AVALANCHE DANGER?</h1>
                  
-
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="input_solar_01">Solar Output(voltage)</label>
-                        <input type="text" class="form-control" id="input_solar_01" placeholder="12.6">
+                        <input type="text" class="form-control" id="input_solar_01" value="12.6">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_temp_02">Temperature(deg F)</label>
-                        <input type="text" class="form-control" id="input_temp_02" placeholder="21">
+                        <input type="text" class="form-control" id="input_temp_02" value="9">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_wind_speed_min_03">Mininum Wind Speed(mph)</label>
-                        <input type="text" class="form-control" id="input_wind_speed_min_03" placeholder="5">
+                        <input type="text" class="form-control" id="input_wind_speed_min_03" value="5">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_wind_speed_avg_04">Wind Speed Average(mph)</label>
-                        <input type="text" class="form-control" id="input_wind_speed_avg_04" placeholder=225>
+                        <input type="text" class="form-control" id="input_wind_speed_avg_04" value="225">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_wind_speed_max_05">Wind Speed Maximum(mph)</label>
-                        <input type="text" class="form-control" id="input_wind_speed_max_05" placeholder="25">
+                        <input type="text" class="form-control" id="input_wind_speed_max_05" value="25">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_wind_direction_06">Wind Direction(deg.)</label>
-                        <input type="text" class="form-control" id="input_wind_direction_06" placeholder="250">
+                        <input type="text" class="form-control" id="input_wind_direction_06" value="250">
                       </div> 
                       <div class="form-group col-md-6">
                         <label for="input_snowpack_height_07">Snowpack Height(inches)</label>
-                        <input type="text" class="form-control" id="input_snowpack_height_07" placeholder="100">
+                        <input type="text" class="form-control" id="input_snowpack_height_07" value="100">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_1day_max_temp_08">Last 24h Hour Max Temp(deg F)</label>
-                        <input type="text" class="form-control" id="input_1day_max_temp_08" placeholder="30">
+                        <input type="text" class="form-control" id="input_1day_max_temp_08" value="30">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_1day_min_temp_09">Last 24h Min Temp(deg F)</label>
-                        <input type="text" class="form-control" id="input_1day_min_temp_09" placeholder="12">
+                        <input type="text" class="form-control" id="input_1day_min_temp_09" value="12">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_2day_max_temp_10">Last 48h Max. Temp(deg F)</label>
-                        <input type="text" class="form-control" id="input_2day_max_temp_10" placeholder="13">
+                        <input type="text" class="form-control" id="input_2day_max_temp_10" value="13">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_2_day_min_temp_11">Last 48h Temperature Min. (deg F)</label>
-                        <input type="text" class="form-control" id="input_2_day_min_temp_11" placeholder="12">
+                        <input type="text" class="form-control" id="input_2_day_min_temp_11" value="12">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_1day_max_snow_12">Last 24h Snowfall(inches)</label>
-                        <input type="text" class="form-control" id="input_1day_max_snow_12" placeholder="12">
+                        <input type="text" class="form-control" id="input_1day_max_snow_12" value="12">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_2day_max_snow_13">48h previous Snowfall (inches)</label>
-                        <input type="text" class="form-control" id="input_2day_max_snow_13" placeholder="12">
+                        <input type="text" class="form-control" id="input_2day_max_snow_13" value="12">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="input_3day_max_snow_14">72h previous Snowfall</label>
-                        <input type="text" class="form-control" id="input_3day_max_snow_14" placeholder="12">
+                        <input type="text" class="form-control" id="input_3day_max_snow_14" value="12">
                       </div></div>
                       <div class="form-group col-md-6">
                         <label for="input_precip_15">Precipitation Accumulation(inches)</label>
-                        <input type="text" class="form-control" id="input_precip_15" placeholder="0.5">
+                        <input type="text" class="form-control" id="input_precip_15" value="0.5">
                       </div>
                     </div>
                     <button id="predict_button">Predict!</button>
@@ -154,15 +151,5 @@
           </div>
         </header>
 
-
-        <!-- Bootstrap core JavaScript -->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Plugin JavaScript -->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for this template -->
-        <script src="js/new-age.min.js"></script>
       </body>
 </html>

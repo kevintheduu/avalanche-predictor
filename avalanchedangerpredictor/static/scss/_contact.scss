@@ -1,49 +1,36 @@
-// Styling for the download section
-section.contact {
-    text-align: center;
-    h2 {
-        margin-top: 0;
-        margin-bottom: 25px;
-        i {
-            color: $brand-google-plus;
-        }
+.contact-section {
+  padding: 5rem 0 0;
+  .card {
+    border: 0;
+    border-bottom: 0.25rem solid $primary;
+    h4 {
+      font-size: 0.8rem;
+      font-family: 'Varela Round';
+      text-transform: uppercase;
+      letter-spacing: 0.15rem;
     }
-    ul.list-social {
-        margin-bottom: 0;
-        li {
-            a {
-                font-size: 40px;
-                line-height: 80px;
-                display: block;
-                width: 80px;
-                height: 80px;
-                color: white;
-                border-radius: 100%;
-            }
-            &.social-twitter {
-                a {
-                    background-color: $brand-twitter;
-                    &:hover {
-                        background-color: darken($brand-twitter, 5%);
-                    }
-                }
-            }
-            &.social-facebook {
-                a {
-                    background-color: $brand-facebook;
-                    &:hover {
-                        background-color: darken($brand-facebook, 5%);
-                    }
-                }
-            }
-            &.social-google-plus {
-                a {
-                    background-color: $brand-google-plus;
-                    &:hover {
-                        background-color: darken($brand-google-plus, 5%);
-                    }
-                }
-            }
-        }
+    hr {
+      border-color: $primary;
+      border-width: 0.25rem;
+      width: 3rem;
     }
+  }
+  .social {
+    margin-top: 5rem;
+    a {
+      text-align: center;
+      height: 3rem;
+      width: 3rem;
+      background: fade-out($white, 0.9);
+      border-radius: 100%;
+      line-height: 3rem;
+      color: fade-out($white, 0.7);
+      &:hover {
+        color: fade-out($white, 0.5);
+      }
+      &:active {
+        color: $white;
+      }
+    }
+  }
 }
