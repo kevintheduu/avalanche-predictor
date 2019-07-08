@@ -32,7 +32,6 @@ def predict():
     #prediction = model.predict_proba([data['user_input']])
     #return jsonify({'probability': prediction[0][1]})
     print(data)
-    
     solar_input_text = document['input_solar_1']
     print(hour_24_text, type(hour_24_text))
     solar_input = int(solar_input_text)
@@ -77,9 +76,9 @@ def predict():
     
     arguments = pd.DataFrame(
         [[solar_input, temp_input,input_min_wind_speed,
-                 input_wind_direction,input_total_snow_depth, input_max_1_day_temp,
-                 input_max_2_day_temp, input_max_1_day_snow, input_max_2_day_snow,
-                 input_max_3_day_snow, input_precipitation]].
+        input_wind_direction,input_total_snow_depth, input_max_1_day_temp,
+        input_max_2_day_temp, input_max_1_day_snow, input_max_2_day_snow,
+        input_max_3_day_snow, input_precipitation]],
         columns = ['Battery Voltage (v)', 'Temperature (deg F)','Wind Speed Minimum (mph)', 
          'Wind Speed Average (mph)','Wind Speed Maximum (mph)',
          'Wind Direction (deg.)','24 Hour Snow (in)', 'Total Snow Depth (in)',
@@ -87,9 +86,6 @@ def predict():
          'min_2_day_temp','max_1_day_snow','max_2_day_snow', 
          'max_3_day_snow', '4800_brooks']
     )
-    
-    
-    
     # prediction = model.predict_proba([data['user_input']])
     
     predicted_score = model.predict(arguments)
