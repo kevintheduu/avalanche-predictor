@@ -15,7 +15,7 @@
 
 <!-- Bootstrap core CSS -->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="css/style.css" rel="stylesheet">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
@@ -25,8 +25,10 @@
 <link href="css/grayscale.min.css" rel="stylesheet">
 
 
+
       
     </head>
+
       <body onload="brython(1)">
         <script type="text/python3">
           from browser import document, ajax
@@ -69,87 +71,163 @@
     
           document["predict_button"].bind("click", get_prediction)
         </script>
-      
-        <header class="masthead">
+
+        <!-- <header class="masthead">
           <div class="container h-100">
             <div class="row h-100">
               <div class="col-lg-7 my-auto">
                 <div class="header-content mx-auto">
-                  <h1 class="mb-5">WHAT IS THE AVALANCHE DANGER?</h1>
-                 
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
+                  <h1 class="mb-5">WHAT IS THE AVALANCHE DANGER?</h1></header>
+                  -->
+
+<header class="masthead">
+  <div class="container d-flex h-100 align-items-center">
+    <div class="mx-auto text-center">
+      <h1 class="mx-auto my-0 text-uppercase">Avalanache Danger Level Predictor</h1>
+      <div class="form-row">
+        <div class="form-group col-sm-4">
+          <label for="input_solar_01">Solar Output(voltage)</label>
+          <input type="text" class="form-control" id="input_solar_01" value="12.6">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_temp_02">Temperature(deg F)</label>
+          <input type="text" class="form-control" id="input_temp_02" value="9">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_wind_speed_min_03">Mininum Wind Speed(mph)</label>
+          <input type="text" class="form-control" id="input_wind_speed_min_03" value="5">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_wind_speed_avg_04">Wind Speed Average(mph)</label>
+          <input type="text" class="form-control" id="input_wind_speed_avg_04" value="225">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_wind_speed_max_05">Wind Speed Maximum(mph)</label>
+          <input type="text" class="form-control" id="input_wind_speed_max_05" value="25">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_wind_direction_06">Wind Direction(deg.)</label>
+          <input type="text" class="form-control" id="input_wind_direction_06" value="250">
+        </div> 
+        <div class="form-group col-sm-4">
+          <label for="input_snowpack_height_07">Snowpack Height(inches)</label>
+          <input type="text" class="form-control" id="input_snowpack_height_07" value="100">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_1day_max_temp_08">Last 24h Hour Max Temp(deg F)</label>
+          <input type="text" class="form-control" id="input_1day_max_temp_08" value="30">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_1day_min_temp_09">Last 24h Min Temp(deg F)</label>
+          <input type="text" class="form-control" id="input_1day_min_temp_09" value="12">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_2day_max_temp_10">Last 48h Max. Temp(deg F)</label>
+          <input type="text" class="form-control" id="input_2day_max_temp_10" value="13">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_2_day_min_temp_11">Last 48h Temperature Min. (deg F)</label>
+          <input type="text" class="form-control" id="input_2_day_min_temp_11" value="12">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_1day_max_snow_12">Last 24h Snowfall(inches)</label>
+          <input type="text" class="form-control" id="input_1day_max_snow_12" value="12">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_2day_max_snow_13">48h previous Snowfall (inches)</label>
+          <input type="text" class="form-control" id="input_2day_max_snow_13" value="12">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_3day_max_snow_14">72h Previous Snowfall</label>
+          <input type="text" class="form-control" id="input_3day_max_snow_14" value="12">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="input_precip_15">Precipitation Accumulation(inches)</label>
+          <input type="text" class="form-control" id="input_precip_15" value="0.5">
+        </div>
+        
+        </div>
+        <button id="predict_button">Predict!</button>
+        <div id="result"></div>
+      <!-- <h2 class="text-white-50 mx-auto mt-2 mb-5">Avalanache Danger Level Predictor</h2> -->
+      <!-- <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a> -->
+    </div>
+  </div>
+<!-- </header> -->
+                    <!-- <div class="form-row">
+                      <div class="form-group col-sm-4">
                         <label for="input_solar_01">Solar Output(voltage)</label>
                         <input type="text" class="form-control" id="input_solar_01" value="12.6">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_temp_02">Temperature(deg F)</label>
                         <input type="text" class="form-control" id="input_temp_02" value="9">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_wind_speed_min_03">Mininum Wind Speed(mph)</label>
                         <input type="text" class="form-control" id="input_wind_speed_min_03" value="5">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_wind_speed_avg_04">Wind Speed Average(mph)</label>
                         <input type="text" class="form-control" id="input_wind_speed_avg_04" value="225">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_wind_speed_max_05">Wind Speed Maximum(mph)</label>
                         <input type="text" class="form-control" id="input_wind_speed_max_05" value="25">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_wind_direction_06">Wind Direction(deg.)</label>
                         <input type="text" class="form-control" id="input_wind_direction_06" value="250">
                       </div> 
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_snowpack_height_07">Snowpack Height(inches)</label>
                         <input type="text" class="form-control" id="input_snowpack_height_07" value="100">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_1day_max_temp_08">Last 24h Hour Max Temp(deg F)</label>
                         <input type="text" class="form-control" id="input_1day_max_temp_08" value="30">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_1day_min_temp_09">Last 24h Min Temp(deg F)</label>
                         <input type="text" class="form-control" id="input_1day_min_temp_09" value="12">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_2day_max_temp_10">Last 48h Max. Temp(deg F)</label>
                         <input type="text" class="form-control" id="input_2day_max_temp_10" value="13">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_2_day_min_temp_11">Last 48h Temperature Min. (deg F)</label>
                         <input type="text" class="form-control" id="input_2_day_min_temp_11" value="12">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_1day_max_snow_12">Last 24h Snowfall(inches)</label>
                         <input type="text" class="form-control" id="input_1day_max_snow_12" value="12">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_2day_max_snow_13">48h previous Snowfall (inches)</label>
                         <input type="text" class="form-control" id="input_2day_max_snow_13" value="12">
                       </div>
-                      <div class="form-group col-md-6">
-                        <label for="input_3day_max_snow_14">72h previous Snowfall</label>
+                      <div class="form-group col-sm-4">
+                        <label for="input_3day_max_snow_14">72h Previous Snowfall</label>
                         <input type="text" class="form-control" id="input_3day_max_snow_14" value="12">
-                      </div></div>
-                      <div class="form-group col-md-6">
+                      </div>
+                      <div class="form-group col-sm-4">
                         <label for="input_precip_15">Precipitation Accumulation(inches)</label>
                         <input type="text" class="form-control" id="input_precip_15" value="0.5">
                       </div>
-                    </div>
-                    <button id="predict_button">Predict!</button>
-                  <div id="result"></div>
-                </div>
-              </div>
+                      
                       </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </header>
-
-      </body>
+                      <button id="predict_button">Predict!</button>
+                      <div id="result"></div> -->
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </header>
+                      </body>
 </html>
