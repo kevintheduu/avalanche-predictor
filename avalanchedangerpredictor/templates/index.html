@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Avy Danger Predictor</title>
+        <title>Stay Safe in the Backcountry</title>
         <script type="text/javascript" src="brython.js"></script>
         <script type="text/javascript" src="brython_stdlib.js"></script>
        
@@ -10,32 +10,52 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-
 <title>Grayscale - Start Bootstrap Theme</title>
 
 <!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+<!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/grayscale.min.css" rel="stylesheet">
+<!-- <link href="css/grayscale.min.css" rel="stylesheet"> turned off to try and change the title size -->
+<link href="css/grayscale.css" rel="stylesheet">
+
 
 
       
     </head>
+
       <body onload="brython(1)">
         <script type="text/python3">
           from browser import document, ajax
           import json
           import warnings
-    
+          
+          def set_response_image(filename):
+              document['response_image'].html = (
+                f'<img src="output_images/{filename}" />'
+              )
+
           def show_results(response):
               if response.status==200 or response.status==0:
-                  document["result"].html = response.text
+                  # document["result"].html = response.text
+                  pred_dict = json.loads(response.text)
+                  pred = pred_dict['Predicted Danger Level']
+                  document["result"].html = pred
+                  if pred < 2:
+                    set_response_image('low.png')
+                  elif 2 < pred < 3:
+                    set_response_image('considerable.png')
+                  elif 3 < pred < 4:
+                    set_response_image('moderate.png')
+                  else:
+                    set_response_image('high.png')
+                    
               elif response.status == 500:
                   print('py error 500')
               else:
@@ -69,87 +89,296 @@
     
           document["predict_button"].bind("click", get_prediction)
         </script>
-      
-        <header class="masthead">
+
+        <!-- <header class="masthead">
           <div class="container h-100">
             <div class="row h-100">
               <div class="col-lg-7 my-auto">
                 <div class="header-content mx-auto">
-                  <h1 class="mb-5">WHAT IS THE AVALANCHE DANGER?</h1>
-                 
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
+                  <h1 class="mb-5">WHAT IS THE AVALANCHE DANGER?</h1></header>
+                  -->
+
+<header class="masthead">
+  <div class="container d-flex h-100 align-items-center">
+    <div class="mx-auto text-center">
+      <h1 class="mx-auto my-0 text-uppercase">Avalanache Danger Level Predictor</h1>
+      <div class="form-row">
+        <div class="form-group col-sm-2">
+          <label for="input_solar_01">Solar Output(voltage)</label>
+          <input type="text" class="form-control" id="input_solar_01" value="12.6">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_temp_02">Temperature(deg F)</label>
+          <input type="text" class="form-control" id="input_temp_02" value="9">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_wind_speed_min_03">Mininum Wind Speed(mph)</label>
+          <input type="text" class="form-control" id="input_wind_speed_min_03" value="5">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_wind_speed_avg_04">Wind Speed Average(mph)</label>
+          <input type="text" class="form-control" id="input_wind_speed_avg_04" value="225">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_wind_speed_max_05">Wind Speed Maximum(mph)</label>
+          <input type="text" class="form-control" id="input_wind_speed_max_05" value="25">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_wind_direction_06">Wind Direction(deg.)</label>
+          <input type="text" class="form-control" id="input_wind_direction_06" value="250">
+        </div> 
+        <div class="form-group col-sm-2">
+          <label for="input_snowpack_height_07">Snowpack Height(inches)</label>
+          <input type="text" class="form-control" id="input_snowpack_height_07" value="100">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_1day_max_temp_08">Last 24h Hour Max Temp(deg F)</label>
+          <input type="text" class="form-control" id="input_1day_max_temp_08" value="30">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_1day_min_temp_09">Last 24h Min Temp(deg F)</label>
+          <input type="text" class="form-control" id="input_1day_min_temp_09" value="12">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_2day_max_temp_10">Last 48h Max. Temp(deg F)</label>
+          <input type="text" class="form-control" id="input_2day_max_temp_10" value="13">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_2_day_min_temp_11">Last 48h Temperature Min. (deg F)</label>
+          <input type="text" class="form-control" id="input_2_day_min_temp_11" value="12">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_1day_max_snow_12">Last 24h Snowfall(inches)</label>
+          <input type="text" class="form-control" id="input_1day_max_snow_12" value="12">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_2day_max_snow_13">48h previous Snowfall (inches)</label>
+          <input type="text" class="form-control" id="input_2day_max_snow_13" value="12">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_3day_max_snow_14">72h Previous Snowfall</label>
+          <input type="text" class="form-control" id="input_3day_max_snow_14" value="12">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="input_precip_15">Precipitation Accumulation(inches)</label>
+          <input type="text" class="form-control" id="input_precip_15" value="0.5">
+        </div>
+        </div>
+        <button id="predict_button">Predict!</button>
+        <!-- <div class='answered' id="result"></div> -->
+        <h2 class="text-white-50 mx-auto mt-2 mb-5"id="result"></h2>
+        <div id="response_image"></div>
+      
+        <!-- <h2 class="text-white-50 mx-auto mt-2 mb-5">Avalanache Danger Level Predictor</h2> -->
+      <!-- <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a> -->
+    </div>
+  </div>
+<!-- </header> -->
+                    <!-- <div class="form-row">
+                      <div class="form-group col-sm-4">
                         <label for="input_solar_01">Solar Output(voltage)</label>
                         <input type="text" class="form-control" id="input_solar_01" value="12.6">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_temp_02">Temperature(deg F)</label>
                         <input type="text" class="form-control" id="input_temp_02" value="9">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_wind_speed_min_03">Mininum Wind Speed(mph)</label>
                         <input type="text" class="form-control" id="input_wind_speed_min_03" value="5">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_wind_speed_avg_04">Wind Speed Average(mph)</label>
                         <input type="text" class="form-control" id="input_wind_speed_avg_04" value="225">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_wind_speed_max_05">Wind Speed Maximum(mph)</label>
                         <input type="text" class="form-control" id="input_wind_speed_max_05" value="25">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_wind_direction_06">Wind Direction(deg.)</label>
                         <input type="text" class="form-control" id="input_wind_direction_06" value="250">
                       </div> 
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_snowpack_height_07">Snowpack Height(inches)</label>
                         <input type="text" class="form-control" id="input_snowpack_height_07" value="100">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_1day_max_temp_08">Last 24h Hour Max Temp(deg F)</label>
                         <input type="text" class="form-control" id="input_1day_max_temp_08" value="30">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_1day_min_temp_09">Last 24h Min Temp(deg F)</label>
                         <input type="text" class="form-control" id="input_1day_min_temp_09" value="12">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_2day_max_temp_10">Last 48h Max. Temp(deg F)</label>
                         <input type="text" class="form-control" id="input_2day_max_temp_10" value="13">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_2_day_min_temp_11">Last 48h Temperature Min. (deg F)</label>
                         <input type="text" class="form-control" id="input_2_day_min_temp_11" value="12">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_1day_max_snow_12">Last 24h Snowfall(inches)</label>
                         <input type="text" class="form-control" id="input_1day_max_snow_12" value="12">
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-sm-4">
                         <label for="input_2day_max_snow_13">48h previous Snowfall (inches)</label>
                         <input type="text" class="form-control" id="input_2day_max_snow_13" value="12">
                       </div>
-                      <div class="form-group col-md-6">
-                        <label for="input_3day_max_snow_14">72h previous Snowfall</label>
+                      <div class="form-group col-sm-4">
+                        <label for="input_3day_max_snow_14">72h Previous Snowfall</label>
                         <input type="text" class="form-control" id="input_3day_max_snow_14" value="12">
-                      </div></div>
-                      <div class="form-group col-md-6">
+                      </div>
+                      <div class="form-group col-sm-4">
                         <label for="input_precip_15">Precipitation Accumulation(inches)</label>
                         <input type="text" class="form-control" id="input_precip_15" value="0.5">
                       </div>
-                    </div>
-                    <button id="predict_button">Predict!</button>
-                  <div id="result"></div>
-                </div>
-              </div>
+                      
                       </div>
-                    </div>
+                      <button id="predict_button">Predict!</button>
+                      <div id="result"></div> -->
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </header>
+ <!-- Contact Section -->
+ <section class="contact-section bg-black">
+  <div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card py-4 h-100">
+                <div class="card-body text-center">
+                    <i class="fab fa-linkedin-in"></i>
+                  <!-- <h4 class="text-uppercase m-0"></h4> -->
+                  <!-- <h4 class="fab fa-linkedin-in"</h4> -->
+                  <hr class="my-4">
+                  <div class="small text-black-50">
+                      <a href="https://www.linkedin.com/in/kevinrexisvelasco/">Kevin Rexis Velasco</a>
                   </div>
                 </div>
+              </div>
+        </div>
+        <div class="col">
+          <!-- EMAIL LINK -->
+            <div class="card py-4 h-100">
+                <div class="card-body text-center">
+                  <!-- <i class="fas fa-envelope text-primary mb-2"></i> -->
+                  <!-- <h4 class="text-uppercase m-0">Email</h4> -->
+                  <i class='fab fa-google'></i>
+                  <!-- <img src="https://cloud.githubusercontent.com/assets/7534680/4515518/6739a508-4bc1-11e4-80bc-670bcc216762.png"  -->
+                  <!-- alt="gmail-icon" style="max-width:20px;"> -->
+                  <!-- <i class="fab fa-gmail"></i> -->
+                  
+                  <hr class="my-4">
+                  <div class="small text-black-50">
+                    <a href="mailto:krexvelasco@gmail.com">krexvelasco@gmail.com</a>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <!-- GITHUB  LINK -->
+        <div class="col"><div class="card py-4 h-100">
+            <div class="card-body text-center">
+                <i class="fab fa-github"></i>
+              <h4 class="text-uppercase m-0"></h4>
+              <hr class="my-4">
+              <div class="small text-black-50">
+                  <a href="https://github.com/kevintheduu">
+                    kevintheduu</a>
+            </div>
+            </div>
+          </div></div>
+          <!-- MEDIUM LINK -->
+        <div class="col">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                  <i class="fab fa-medium"></i>
+                <h4 class="text-uppercase m-0"></h4>
+                <hr class="my-4">
+                <div class="small text-black-50">
+                    <a href="https://medium.com/@krexvelasco">
+                  Blog
+
+                </div>
+              </div>
             </div>
           </div>
-        </header>
+        </div>
+      </div></div>
+  <!-- <div class="container">
 
-      </body>
+    <div class="row">
+
+      <div class="col-sm-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+            <h4 class="text-uppercase m-0">Address</h4>
+            <hr class="my-4">
+            <div class="small text-black-50"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <a href="https://www.linkedin.com/in/kevinrexisvelasco/" class="mx-2"></a>
+            <i class="fas fa-envelope text-primary mb-2"></i> -->
+            <!-- <h4 class="text-uppercase m-0">Email</h4>
+            <hr class="my-4">
+            <div class="small text-black-50">
+              <a href="#">krexvelasco@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <i class="fas fa-mobile-alt text-primary mb-2"></i>
+            <h4 class="text-uppercase m-0">Phone</h4>
+            <hr class="my-4">
+            <div class="small text-black-50">+1 (509) 594-0760</div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="col-sm-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <i class="fas fa-mobile-alt text-primary mb-2"></i>
+            <h4 class="text-uppercase m-0">Phone</h4>
+            <hr class="my-4">
+            <div class="small text-black-50">+1 (509) 594-0760</div>
+          </div>
+        </div>
+      </div>
+    </div> --> -->
+
+    
+    <!-- <div class="social d-flex justify-content-center">
+      <a href="https://www.linkedin.com/in/kevinrexisvelasco/" class="mx-2">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://medium.com/@krexvelasco" class="mx-2">
+        <i class="fab fa-medium"></i>
+      </a>
+      <a href="https://github.com/kevintheduu" class="mx-2">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+
+  </div>
+</section> -->
+
+
+                      </body>
 </html>
