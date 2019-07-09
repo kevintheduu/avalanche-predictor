@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Avy Danger Predictor</title>
+        <title>Stay Safe in the Backcountry</title>
         <script type="text/javascript" src="brython.js"></script>
         <script type="text/javascript" src="brython_stdlib.js"></script>
        
@@ -10,11 +10,11 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-
 <title>Grayscale - Start Bootstrap Theme</title>
 
 <!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -22,7 +22,8 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/grayscale.min.css" rel="stylesheet">
+<!-- <link href="css/grayscale.min.css" rel="stylesheet"> turned off to try and change the title size -->
+<link href="css/grayscale.css" rel="stylesheet">
 
 
 
@@ -34,10 +35,27 @@
           from browser import document, ajax
           import json
           import warnings
-    
+          
+          def set_response_image(filename):
+              document['response_image'].html = (
+                f'<img src="output_images/{filename}" />'
+              )
+
           def show_results(response):
               if response.status==200 or response.status==0:
-                  document["result"].html = response.text
+                  # document["result"].html = response.text
+                  pred_dict = json.loads(response.text)
+                  pred = pred_dict['Predicted Danger Level']
+                  document["result"].html = pred
+                  if pred < 2:
+                    set_response_image('low.png')
+                  elif 2 < pred < 3:
+                    set_response_image('considerable.png')
+                  elif 3 < pred < 4:
+                    set_response_image('moderate.png')
+                  else:
+                    set_response_image('high.png')
+                    
               elif response.status == 500:
                   print('py error 500')
               else:
@@ -145,11 +163,13 @@
           <label for="input_precip_15">Precipitation Accumulation(inches)</label>
           <input type="text" class="form-control" id="input_precip_15" value="0.5">
         </div>
-        
         </div>
         <button id="predict_button">Predict!</button>
-        <div id="result"></div>
-      <!-- <h2 class="text-white-50 mx-auto mt-2 mb-5">Avalanache Danger Level Predictor</h2> -->
+        <!-- <div class='answered' id="result"></div> -->
+        <h2 class="text-white-50 mx-auto mt-2 mb-5"id="result"></h2> -->
+        <div id="response_image"></div>
+      
+        <!-- <h2 class="text-white-50 mx-auto mt-2 mb-5">Avalanache Danger Level Predictor</h2> -->
       <!-- <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a> -->
     </div>
   </div>
@@ -229,5 +249,135 @@
                       </div>
                       </div>
                       </header>
+ <!-- Contact Section -->
+ <section class="contact-section bg-black">
+  <div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card py-4 h-100">
+                <div class="card-body text-center">
+                    <i class="fab fa-linkedin-in"></i>
+                  <!-- <h4 class="text-uppercase m-0"></h4> -->
+                  <!-- <h4 class="fab fa-linkedin-in"</h4> -->
+                  <hr class="my-4">
+                  <div class="small text-black-50">
+                      <a href="https://www.linkedin.com/in/kevinrexisvelasco/">Kevin Rexis Velasco</a>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col">
+          <!-- EMAIL LINK -->
+            <div class="card py-4 h-100">
+                <div class="card-body text-center">
+                  <!-- <i class="fas fa-envelope text-primary mb-2"></i> -->
+                  <!-- <h4 class="text-uppercase m-0">Email</h4> -->
+                  <img src="https://cloud.githubusercontent.com/assets/7534680/4515518/6739a508-4bc1-11e4-80bc-670bcc216762.png" 
+                  alt="gmail-icon" style="max-width:20px;">
+                  <!-- <i class="fab fa-gmail"></i> -->
+                  
+                  <hr class="my-4">
+                  <div class="small text-black-50">
+                    <a href="mailto:krexvelasco@gmail.com">krexvelasco@gmail.com</a>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <!-- GITHUB  LINK -->
+        <div class="col"><div class="card py-4 h-100">
+            <div class="card-body text-center">
+                <i class="fab fa-github"></i>
+              <h4 class="text-uppercase m-0"></h4>
+              <hr class="my-4">
+              <div class="small text-black-50">
+                  <a href="https://github.com/kevintheduu">
+                    kevintheduu</a>
+            </div>
+            </div>
+          </div></div>
+          <!-- MEDIUM LINK -->
+        <div class="col">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                  <i class="fab fa-medium"></i>
+                <h4 class="text-uppercase m-0"></h4>
+                <hr class="my-4">
+                <div class="small text-black-50">
+                    <a href="https://medium.com/@krexvelasco">
+                  Blog
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+  <!-- <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+            <h4 class="text-uppercase m-0">Address</h4>
+            <hr class="my-4">
+            <div class="small text-black-50"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <a href="https://www.linkedin.com/in/kevinrexisvelasco/" class="mx-2"></a>
+            <i class="fas fa-envelope text-primary mb-2"></i> -->
+            <!-- <h4 class="text-uppercase m-0">Email</h4>
+            <hr class="my-4">
+            <div class="small text-black-50">
+              <a href="#">krexvelasco@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <i class="fas fa-mobile-alt text-primary mb-2"></i>
+            <h4 class="text-uppercase m-0">Phone</h4>
+            <hr class="my-4">
+            <div class="small text-black-50">+1 (509) 594-0760</div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="col-sm-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <i class="fas fa-mobile-alt text-primary mb-2"></i>
+            <h4 class="text-uppercase m-0">Phone</h4>
+            <hr class="my-4">
+            <div class="small text-black-50">+1 (509) 594-0760</div>
+          </div>
+        </div>
+      </div>
+    </div> --> -->
+
+    
+    <!-- <div class="social d-flex justify-content-center">
+      <a href="https://www.linkedin.com/in/kevinrexisvelasco/" class="mx-2">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://medium.com/@krexvelasco" class="mx-2">
+        <i class="fab fa-medium"></i>
+      </a>
+      <a href="https://github.com/kevintheduu" class="mx-2">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+
+  </div>
+</section> -->
+
+
                       </body>
 </html>

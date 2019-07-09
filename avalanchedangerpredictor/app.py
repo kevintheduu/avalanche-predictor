@@ -5,6 +5,14 @@ import pickle
 from flask import Flask, request, render_template, jsonify
 import numpy as np
 
+def apply_scaling_factor(num):
+    """Applies a scaling factor to the model's prediction.
+    Will need to be recalibrated every month of the season to
+    adjust for new data."""
+    scaling_factor = 1.6666666666666665
+    y_pred_5_percentile = 1.4
+    y_scaled = ((num-y_pred_5_percentile) * scaling_factor) +1
+    return y_scaled
 
 with open('avy_danger_prediction.pkl', 'rb') as f:
     model = pickle.load(f)
@@ -24,15 +32,10 @@ def index():
     #   dtype='object')
     
 
-
-      
-               
-
-
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
-    """Return a random prediction."""
-    """First lets see if it can return what I want"""
+    """Return a predicted avalanche danger level through the regression model."""
+    
     data = request.json
     #prediction = model.predict_proba([data['user_input']])
     #return jsonify({'probability': prediction[0][1]})
@@ -52,7 +55,7 @@ def predict():
 
     input_wind_speed_max_text = data['input_wind_speed_max_05']
     input_wind_speed_max = float(input_wind_speed_max_text)
-   
+    
     input_wind_direction_text = data['input_wind_direction_06']
     input_wind_direction = float(input_wind_direction_text)
     
@@ -104,9 +107,13 @@ def predict():
         ])
     print(arguments.head())
     
-    predicted_score = model.predict(arguments)[0]
-    rounded_predicted_score = np.round(predicted_score,2)
+    predicted = model.predict(arguments)[0]
+    scaled_prediction = apply_scaling_factor(predicted)
+    rounded_scaled_prediction = np.round(scaled_prediction,2)
+    
+    print(type(rounded_scaled_prediction))
+    
+    
+    print((rounded_scaled_prediction), type(rounded_scaled_prediction))
 
-    print((rounded_predicted_score), type(rounded_predicted_score))
-
-    return jsonify({'Avalanche Danger Level': rounded_predicted_score})
+    return jsonify({'Predicted Danger Level': rounded_scaled_prediction})
