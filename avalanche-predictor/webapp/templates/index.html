@@ -38,7 +38,7 @@
           
           def set_response_image(filename):
              document['response_image'].html = (
-               f'<img class="warning-img" style="display: block; width: 55%; height: auto;" src="output_images/{filename}"/>'
+               f'<img class="warning-img" style="display: block; width: 100%; height: auto;" src="output_images/{filename}"/>'
              )
 
           def show_results(response):
@@ -166,10 +166,10 @@
         </div>
         <button class='predict-button' id="predict_button">Predict!</button>
         <!-- <div class='answered' id="result"></div> -->
-        <h2 style='color:white' class="text-white-50 mx-auto mt-2 mb-5"id="result" ></h2>
+        <!-- <h2 style='color:white' class="text-white-50 mx-auto mt-2 mb-5"id="result" ></h2> -->
         
-        <div class="container d-flex h-100 align-items-center"><
-          <div id="response_image" >
+        <div class="container d-flex h-100 align-items-center">
+          <!-- <div id="response_image" > -->
         </div>
        
       
@@ -188,10 +188,34 @@
                       </div>
                       </div>
                       </header>
+
+
+<section id="projects" class="projects-section bg-light">
+  <div class="container">
+
+    <!-- Danger Image section, what was the projects section -->
+    <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+      <div class="col-xl-8 col-lg-7">
+        <div id="response_image" ></div>
+      </div>
+      <div class="col-xl-4 col-lg-5">
+        <div class="featured-text text-center text-lg-left">
+          <h2>Predicted Danger Level</h2>
+          <p class="text-black-50 mb-0" id='result'></p>
+        </div><br>
+        <h3>Safe backcountry travel requires training and experience.</h3><br>
+        <h3>You control your own risk by choosing where, when, and how you travel.</h3><br>
+
+      </div>
+    </div>
+  </section>
+    
+
+
  <!-- Contact Section -->
  <section id="signup" class="signup-section">
  <!-- <section class="contact-section bg-black"> -->
-  <div class="container">
+  <div class="container" id='contact-container'>
     <div class="row">
         <div class="col">
             <div class="card py-4 h-55">
@@ -252,6 +276,14 @@
           </div>
         </div>
       </div></div></section>
+
+     <!-- Footer -->
+  <footer class="bg-black small text-center text-white-50">
+    <div class="container">
+      Copyright &copy; Kevin Rexis Velasco 2019
+    </div>
+  </footer>
+
   <!-- <div class="container">
 
     <div class="row">

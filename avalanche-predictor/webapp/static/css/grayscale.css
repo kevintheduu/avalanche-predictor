@@ -104,8 +104,9 @@
   font-family: 'Varela Round';
   /* font-size: 2.5rem;
   line-height: 2.5rem; */
-  font-size: 2rem;
+  font-size: 3rem;
   line-height: 2rem;
+  padding-top: 10px;
   letter-spacing: 0.1rem;
   background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
   -webkit-text-fill-color: transparent;
@@ -120,8 +121,9 @@
 @media (min-width: 768px) {
   .masthead h1 {
     /* font-size: 4rem; */
-    font-size: 2rem;
+    font-size: 6rem;
     line-height: 4rem;
+    
   }
 }
 
@@ -182,6 +184,7 @@
 
 .projects-section {
   padding: 10rem 0;
+  padding: 30px;
 }
 
 .projects-section .featured-text {
@@ -219,6 +222,7 @@
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
+  max-width: 100%;
 }
 
 .signup-section .form-inline input {
