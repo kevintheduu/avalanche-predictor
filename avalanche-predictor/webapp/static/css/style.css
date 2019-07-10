@@ -5,3 +5,8 @@ label {
 answered {
     max-width:30rem;font-size:2rem;
 }
+
+.input-box{
+    text-align: center;
+    width:25%;
+}
