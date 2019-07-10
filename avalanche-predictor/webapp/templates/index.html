@@ -38,7 +38,7 @@
           
           def set_response_image(filename):
               document['response_image'].html = (
-                f'<img src="output_images/{filename}" height="300"/>'
+                f'<img class="warning-img" src="output_images/{filename}"/>'
               )
 
           def show_results(response):
@@ -164,10 +164,10 @@
           <input type="text" class="form-control; input-box" id="input_precip_15" value="0.5">
         </div>
         </div>
-        <button id="predict_button">Predict!</button>
+        <button class='predict button' id="predict_button">Predict!</button>
         <!-- <div class='answered' id="result"></div> -->
         <h2 class="text-white-50 mx-auto mt-2 mb-5"id="result"></h2>
-        <div id="response_image" ></div>
+        <div class='response-image' id="response_image" ></div>
       
         <!-- <h2 class="text-white-50 mx-auto mt-2 mb-5">Avalanache Danger Level Predictor</h2> -->
       <!-- <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a> -->
