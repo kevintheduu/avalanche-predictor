@@ -38,8 +38,12 @@
           
           def set_response_image(filename):
               document['response_image'].html = (
-                f'<img class="avy-icon" src="output_images/{filename}"/>'
-              )
+                f'<img class="avy-icon"  src="output_images/{filename}"/>'
+                style="
+                display:block;
+                width:100%;
+                height: auto;
+                ")
 
           def show_results(response):
               if response.status==200 or response.status==0:
