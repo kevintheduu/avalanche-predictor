@@ -13,11 +13,12 @@ answered {
 }
 
 .predict-button{
-    width: 100%;
-    padding: 16px 20px;
+    width: 10%;
+    padding: 5px 5px;
+    /* padding: 16px 20px; */
     border: none;
     border-radius: 4px;
-    background-color: #f1f1f1;
+    background-color: #acffd5;
 }
 
 #response_image {
@@ -25,3 +26,8 @@ answered {
     justify-content: center;
     align-items: center;
     }
+
+#result {
+    color: white;
+    font-size:2rem;
+}
