@@ -20,8 +20,8 @@ answered {
     background-color: #f1f1f1;
 }
 
-#response_image{
-    display: block;
-    width: 75%;
-    height: auto;
-   }
+#response_image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
