@@ -9,11 +9,12 @@ answered {
 
 .input-box{
     text-align: center;
-    width:50%;
+    width:70%;
+    font-size:1rem;
 }
 
 .predict-button{
-    width: 10%;
+    width: 20%;
     padding: 5px 5px;
     /* padding: 16px 20px; */
     border: none;
@@ -30,4 +31,9 @@ answered {
 #result {
     color: white;
     font-size:2rem;
+}
+
+#avy-title{
+    padding-top:50px; 
+    font-size: 2rem;
 }
