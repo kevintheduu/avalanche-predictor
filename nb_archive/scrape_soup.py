@@ -9,7 +9,7 @@ browser = Chrome()
 
 mc = pymongo.MongoClient()
 db = mc['avalanche']
-forecast_coll = db['forecasts_test']
+forecast_coll = db['forecasts']
 
 def scrape_url(url, browser=browser, delay=5):
     """Returns the HTML source from a URL."""
