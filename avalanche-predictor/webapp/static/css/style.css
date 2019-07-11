@@ -2,7 +2,9 @@ label {
     color:#acffd5;
     font-size:1rem;
 }
-
+#resulting-text {
+    color: white
+}
 answered {
     max-width:30rem;font-size:2rem;
 }
@@ -29,7 +31,7 @@ answered {
     }
 
 #result {
-    color: black;
+    color: white;
     font-size:3rem;
 }
 
