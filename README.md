@@ -15,7 +15,8 @@ The data collected from the weather stations is handily provided through nwac.us
 [Precipitation Data](https://www.nwac.us/data-portal/location/stevens-pass/q?field_name=precipitation&year=2019&custom_startdate=2014-01-01&custom_enddate=2019-06-28)
 
 [Weather Data](https://www.nwac.us/data-portal/location/stevens-pass/)
-[image of where to collect weather data](data_portal.png))
+
+![image of where to collect weather data](data_portal.png))
 
 
 
