@@ -16,30 +16,34 @@ The data collected from the weather stations is handily provided through nwac.us
 
 [Weather Data](https://www.nwac.us/data-portal/location/stevens-pass/)
 
-![image of where to collect weather data](data_portal.png))
+Download every "Stevens Pass - Skyline, 5250'" csv file from 2014 to 2019
 
-
+![image of where to collect weather data](data_portal.png)
 
 
 The archive of avalance danger forecasts only go back until 2014, and are given daily for three elevation bands: below treeline, near treeline, and above treeline. I decide to focus only on one elevation band, near-treeline since it is the elevation band 
 
 [Precipitation Data](https://www.nwac.us/data-portal/location/stevens-pass/q?field_name=precipitation&year=2019&custom_startdate=2014-01-01&custom_enddate=2019-06-28)
 
-Unfortutely  within their data portal, they do not provide an archive of their predicted danger forecasts. 
-
-
-This problem is easily solved by scraping their archived forecasts. To solve this, two scrapes are necessary: the first is to first collect a list of urls that point to the numerous urls of each forecast To obtain a prediction to base asses my model performance,
+Within their data portal, they do not provide an archive of their predicted danger forecasts. This problem is easily solved by scraping their archived forecasts. To solve this, two scrapes are necessary: the first is to first collect a list of urls that point to the numerous urls of each forecast To obtain a prediction to base asses my model performance,
 
 ## Data Preparation
 
 
-Modeling
+## Modeling
 
 
-Evaluation
+## Evaluation
 
 
-Deployment
-Once I can get a model going, I hope to deploy this via Flask so I can use it! 
+## Deployment
+
+The model is deployed as a Web Application that calculates the avalanche danger level prediction based on input values that correspond to a few days of weather data. 
+
+[*Web Application*](www.avydangertool.online)
+
+## Next Steps
+
+ 
 
 
