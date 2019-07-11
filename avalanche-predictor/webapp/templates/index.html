@@ -68,7 +68,6 @@
               req.open('POST', '/predict', True)
               req.set_header('content-type','application/json')
               fields = [
-                'input_solar_01',
                 'input_temp_02',
                 'input_wind_speed_min_03',
                 'input_wind_speed_avg_04',
@@ -103,10 +102,10 @@
     <div class="mx-auto text-center">
       <h1 class="mx-auto my-0 text-uppercase">Avalanache Danger Level Predictor</h1>
       <div class="form-row">
-        <div class="form-group col-sm-2">
+        <!-- <div class="form-group col-sm-2">
           <label for="input_solar_01">Solar Output(voltage)</label>
           <input type="text" class="form-control; input-box" id="input_solar_01" value="12.6">
-        </div>
+        </div> -->
         <div class="form-group col-sm-2">
           <label for="input_temp_02">Temperature(deg F)</label>
           <input type="text" class="form-control; input-box" id="input_temp_02" value="9">
@@ -283,73 +282,6 @@
       Copyright &copy; Kevin Rexis Velasco 2019
     </div>
   </footer>
-
-  <!-- <div class="container">
-
-    <div class="row">
-
-      <div class="col-sm-4 mb-3 mb-md-0">
-        <div class="card py-4 h-100">
-          <div class="card-body text-center">
-            <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-            <h4 class="text-uppercase m-0">Address</h4>
-            <hr class="my-4">
-            <div class="small text-black-50"></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4 mb-3 mb-md-0">
-        <div class="card py-4 h-100">
-          <div class="card-body text-center">
-            <a href="https://www.linkedin.com/in/kevinrexisvelasco/" class="mx-2"></a>
-            <i class="fas fa-envelope text-primary mb-2"></i> -->
-            <!-- <h4 class="text-uppercase m-0">Email</h4>
-            <hr class="my-4">
-            <div class="small text-black-50">
-              <a href="#">krexvelasco@gmail.com</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4 mb-3 mb-md-0">
-        <div class="card py-4 h-100">
-          <div class="card-body text-center">
-            <i class="fas fa-mobile-alt text-primary mb-2"></i>
-            <h4 class="text-uppercase m-0">Phone</h4>
-            <hr class="my-4">
-            <div class="small text-black-50">+1 (509) 594-0760</div>
-          </div>
-        </div>
-      </div>
-    </div>
-      <div class="col-sm-4 mb-3 mb-md-0">
-        <div class="card py-4 h-100">
-          <div class="card-body text-center">
-            <i class="fas fa-mobile-alt text-primary mb-2"></i>
-            <h4 class="text-uppercase m-0">Phone</h4>
-            <hr class="my-4">
-            <div class="small text-black-50">+1 (509) 594-0760</div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-    
-    <!-- <div class="social d-flex justify-content-center">
-      <a href="https://www.linkedin.com/in/kevinrexisvelasco/" class="mx-2">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-      <a href="https://medium.com/@krexvelasco" class="mx-2">
-        <i class="fab fa-medium"></i>
-      </a>
-      <a href="https://github.com/kevintheduu" class="mx-2">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-
-  </div>
-</section> -->
-
 <script type='text/javascript'>
   document.querySelector('#predict_button').addEventListener('click', () => window.scrollTo(0, 825));
 </script>

@@ -25,13 +25,20 @@ The archive of avalance danger forecasts only go back until 2014, and are given 
 
 [Precipitation Data](https://www.nwac.us/data-portal/location/stevens-pass/q?field_name=precipitation&year=2019&custom_startdate=2014-01-01&custom_enddate=2019-06-28)
 
-Within their data portal, they do not provide an archive of their predicted danger forecasts. This problem is easily solved by scraping their archived forecasts. To solve this, two scrapes are necessary: the first is to first collect a list of urls that point to the numerous urls of each forecast To obtain a prediction to base asses my model performance,
+Within their data portal, they do not provide an archive of their predicted danger forecasts. This problem is easily solved by scraping their archived forecasts. To solve this, three scrapes are necessary: the first is to first collect a list of urls that point to the numerous dates of human forecasts. Second, a scrape of the urls of each area's forecast for that particular date. And thirdly, the last scrape to obtain each page's html code. The html is saved into a MongoDB collection, which is then parsed through with Beautiful Soup to obtain the desired information of avalanche danger forecasts. This process can be performed in the jupyter notebook titled 'scrape_collect.' 
 
 ## Data Preparation
+
+Merging the various tables involves a lot of cleaning of the column names, that utilize quotations (") to represent inch measurements. This is problematic in code, and is cleaned.
+To merge the weather data to the avalanche forecats, abstracting the a date stamp separate from the hourly time reading is required. Since The avalanche forecasts are only daily forecasts, I am making  an assumption that the whole 24 hour period will be designated this avalanche forecast. 
+
+
+
 
 
 ## Modeling
 
+A pipeline is 
 
 ## Evaluation
 

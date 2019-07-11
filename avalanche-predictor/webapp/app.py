@@ -9,12 +9,12 @@ def apply_scaling_factor(num):
     """Applies a scaling factor to the model's prediction.
     Will need to be recalibrated every month of the season to
     adjust for new data."""
-    scaling_factor = 1.6666666666666665
-    y_pred_5_percentile = 1.4
+    scaling_factor = 1.5
+    y_pred_5_percentile = 1.2
     y_scaled = ((num-y_pred_5_percentile) * scaling_factor) +1
     return y_scaled
 
-with open('avy_danger_prediction.pkl', 'rb') as f:
+with open('avy_danger_prediction2.pkl', 'rb') as f:
     model = pickle.load(f)
 app = Flask(__name__, static_url_path="")
 
@@ -23,7 +23,7 @@ def index():
     """Return the main page."""
     return render_template('index.html')
 
-# Index(['Battery Voltage (v)', 'Temperature (deg F)',
+# Index([, 'Temperature (deg F)',
     #    'Wind Speed Minimum (mph)', 'Wind Speed Average (mph)',
     #    'Wind Speed Maximum (mph)', 'Wind Direction (deg.)',
     #    'Total Snow Depth (in)', 'max_1_day_temp', 'min_1_day_temp',
@@ -40,9 +40,9 @@ def predict():
     #prediction = model.predict_proba([data['user_input']])
     #return jsonify({'probability': prediction[0][1]})
     print(data)
-    input_solar_text = data['input_solar_01']
-    print(input_solar_text, type(input_solar_text))
-    input_solar = float(input_solar_text)
+    # input_solar_text = data['input_solar_01']
+    # print(input_solar_text, type(input_solar_text))
+    # input_solar = float(input_solar_text)
     
     input_temp_text = data['input_temp_02']
     input_temp = float(input_temp_text)
@@ -87,7 +87,7 @@ def predict():
     input_precip = float(input_precip_text)
     
     arguments = pd.DataFrame([[
-        input_solar, input_temp,
+        input_temp,
         input_wind_speed_min, input_wind_speed_avg,
         input_wind_speed_max, input_wind_direction,
         input_snowpack_height,input_1day_max_temp,
@@ -96,7 +96,7 @@ def predict():
         input_2day_max_snow,input_3day_max_snow,
         input_precip]],
         columns = [
-        'Battery Voltage (v)', 'Temperature (deg F)',
+        'Temperature (deg F)',
         'Wind Speed Minimum (mph)', 'Wind Speed Average (mph)',
         'Wind Speed Maximum (mph)', 'Wind Direction (deg.)',
         'Total Snow Depth (in)', 'max_1_day_temp',
