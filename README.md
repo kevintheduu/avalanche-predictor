@@ -29,28 +29,26 @@ Within their data portal, they do not provide an archive of their predicted dang
 
 ## Data Preparation
 
-Merging the various tables involves a lot of cleaning of the column names, that utilize quotations (") to represent inch measurements. This is problematic in code, and is cleaned.
-To merge the weather data to the avalanche forecats, abstracting the a date stamp separate from the hourly time reading is required. Since The avalanche forecasts are only daily forecasts, I am making  an assumption that the whole 24 hour period will be designated this avalanche forecast. 
-
-
-
+To merge the weather data to the avalanche forecats, abstracting the a date stamp separate from the hourly time reading is required. Since The avalanche forecasts are only daily forecasts, I am making an assumption that the whole 24 hour period will be designated this avalanche forecast. This is done so that I do not lose the granularity of the hourly data. Scattered throughout the weather station data, there are many instances of unrealistic measurements (ex. a negative 24 inchew of snow over the last 24 hours) so assumptions are made to clean up the data. Lastly, lag features are created to give the model more features. Avalanche problems/causes can last up to weeks, but to keep the model simple, I have chosen to implement lag features that only go back a few days. 
 
 
 ## Modeling
 
-A pipeline is 
+Rather than treating the output of my prediction model as a classification on a 0-5 discrete scale, I chose to treat the problem as a regression. By doing so, the comparison of my model's output will not match up with the human forecast. In order to validate my models performance, I implement violin plots to visualize the comparison between both the prediction and human forecast
+After implementing scikit-learn's pipeline to test various regression algorithms, I ultimately chose the XGboost algorithm as it was the best performing on the basis of rmse vs predicting the mean. 
 
 ## Evaluation
 
+![violin plots](violin_plots.jpg)
+
+Upon visualizing the model's prediction vs the human forecast, without calibration, the model's predictions are marginally lower than the human forecasts. After a calibration which rescales the outputs across +/- 2 standard deviations about the mean, the model performance improves. Overall, the model is able to identify high avalanche danger levels consistently. However, in determining the middle range of 2/3, the values are quite spread out. But at the end of the day, the true prediction is a **human** provided forecast, in where ambiguity of what true 2 or 3 varies between the various forecasters themselves. Who would have thought prediciting weather would be so hard?
 
 ## Deployment
 
 The model is deployed as a Web Application that calculates the avalanche danger level prediction based on input values that correspond to a few days of weather data. 
 
-[*Web Application*](www.avydangertool.online)
+[*Web Application*](http://www.avydangertool.online)
 
 ## Next Steps
 
- 
-
-
+My next steps in improving this project would be to first improve the model's performance. Weather data (what's in the sky) to supplement the weather station collection data would be great start, along with even more lag features. Secondly, I would also like to explore performing an ensemble of regression algorithms, random forest plus a linear regression, to ensure the model is able to pick up on once in a lifetime winter events, such as the 1963 recording of 78 inches in 24-hours at Thompson Pass, AK. 
